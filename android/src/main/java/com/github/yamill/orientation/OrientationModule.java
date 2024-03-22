@@ -8,7 +8,7 @@ import android.content.IntentFilter;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.util.Log;
-
+import androidx.core.content.ContextCompat;
 import com.facebook.common.logging.FLog;
 import com.facebook.react.bridge.Arguments;
 import com.facebook.react.bridge.Callback;
@@ -150,7 +150,7 @@ public class OrientationModule extends ReactContextBaseJavaModule implements Lif
             FLog.e(ReactConstants.TAG, "no activity to register receiver");
             return;
         }
-        activity.registerReceiver(receiver, new IntentFilter("onConfigurationChanged"));
+        ContextCompat.registerReceiver(activity, receiver, new IntentFilter("onConfigurationChanged"), ContextCompat.RECEIVER_NOT_EXPORTED);
     }
     @Override
     public void onHostPause() {
